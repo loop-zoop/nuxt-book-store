@@ -1,19 +1,44 @@
 <template>
   <div>
-    <h1 class='mb-4'>Sign Up</h1>
+    <h1 class="mb-4">Sign Up</h1>
     <b-row>
-      <b-form class='login-signup-form'>
+      <b-form class="login-signup-form">
         <b-form-group label="Email" label-align="left">
-          <b-input type="email"></b-input>
+          <b-input v-model='email' type="email"></b-input>
         </b-form-group>
         <b-form-group label="Password" label-align="left">
-          <b-input type="password"></b-input>
+          <b-input v-model='password' type="password"></b-input>
         </b-form-group>
+        <p><nuxt-link to='/login'>Already have an account? Log In here!</nuxt-link></p>
+        <b-button @click="registerUser">Sign Up</b-button>
       </b-form>
     </b-row>
   </div>
 </template>
 
 <script>
-export default {};
+import firebase from "~/plugins/firebase";
+
+export default {
+  head: {
+    title: "Sign Up"
+  },
+  data() {
+    return {
+      email: "",
+      password: "",
+      error: ""
+    };
+  },
+  methods: {
+    registerUser() {
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.email, this.password)
+        .catch(error => {
+          this.error = error;
+        });
+    }
+  }
+};
 </script>

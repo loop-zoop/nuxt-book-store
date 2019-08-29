@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-navbar toggleable="lg" type="dark" variant="dark">
+    <b-navbar toggleable="lg" class="header" type="dark">
       <b-nav-form>
         <b-form-input size="sm" class="mr-sm-2" placeholder="Search"></b-form-input>
         <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
@@ -26,13 +26,10 @@
               <circle cx="12" cy="27" r="2"></circle>
             </svg>
           </b-nav-item>
-          <b-nav-item href="#">
-            <n-link to="/login">Log In</n-link>
-          </b-nav-item>
-          <b-nav-text>/</b-nav-text>
-          <b-nav-item href="#">
-            <n-link to="/signup">Sign Up</n-link>
-          </b-nav-item>
+          <n-link v-if='!isUserLoggedIn' class='nav-link' to="/login">Log In</n-link>
+          <b-nav-text v-if='!isUserLoggedIn'>/</b-nav-text>
+          <n-link v-if='!isUserLoggedIn' class='nav-link' to="/signup">Sign Up</n-link>
+          <b-nav-item @click='signOut' v-if='isUserLoggedIn'>Log Out</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -40,5 +37,19 @@
 </template>
 
 <script>
-export default {};
+import { mapGetters } from 'vuex';
+import { mapMutations } from 'vuex';
+
+export default {
+  computed: {
+    ...mapGetters({
+      isUserLoggedIn: 'user/userLogInStatus'
+    })
+  },
+  methods: {
+    ...mapMutations({
+      signOut: 'user/signOut'
+    })
+  }
+};
 </script>
