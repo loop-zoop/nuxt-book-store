@@ -2,8 +2,8 @@
   <div>
     <b-navbar toggleable="lg" class="header" type="dark">
       <b-nav-form>
-        <b-form-input size="sm" class="mr-sm-2" placeholder="Search"></b-form-input>
-        <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
+        <b-form-input v-model='searchKeyWord' size="sm" class="mr-sm-2" placeholder="Search"></b-form-input>
+        <b-button size="sm" class="my-2 my-sm-0" @click.prevent='search(searchKeyWord)'>Search</b-button>
       </b-nav-form>
 
       <b-collapse id="nav-collapse" is-nav>
@@ -37,19 +37,26 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import { mapMutations } from 'vuex';
+import { mapGetters, mapActions, mapMutations } from 'vuex';
 
 export default {
+  data() {
+    return {
+      searchKeyWord: ''
+    }
+  },
   computed: {
     ...mapGetters({
       isUserLoggedIn: 'user/userLogInStatus'
     })
   },
   methods: {
-    ...mapMutations({
+    ...mapActions({
       signOut: 'user/signOut'
-    })
+    }),
+    search(keyWord) {
+      this.$emit('search-redirect', keyWord)
+    }
   }
 };
 </script>

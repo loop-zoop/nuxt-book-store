@@ -9,7 +9,12 @@ export const mutations = {
 }
 
 export const actions = {
-
+    async fireBooksRequest({ commit }, search) {
+        let { data } = await this.$axios.get(
+            `https://www.googleapis.com/books/v1/volumes?q=${search}`
+        );
+        commit('setBooks', data.items)
+    }
 }
 
 export const getters = {

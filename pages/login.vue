@@ -9,6 +9,7 @@
         <b-form-group label="Password" label-align="left">
           <b-input v-model="password" type="password"></b-input>
         </b-form-group>
+        <p v-if="error">{{error.message}}</p>
         <p>
           <nuxt-link to="/signup">Don't have an account? Sign Up here!</nuxt-link>
         </p>
@@ -33,15 +34,17 @@ export default {
     };
   },
   methods: {
-    logInUser() {
+    async logInUser() {
       firebase
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
+        .then(() => {
+          this.$store.commit("user/signIn", firebase.auth().currentUser);
+          this.$router.replace("/");
+        })
         .catch(error => {
           this.error = error;
         });
-      this.$store.commit('user/signIn', firebase.auth().currentUser)
-      this.$router.replace("/");
     }
   }
 };

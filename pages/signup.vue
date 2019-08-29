@@ -9,6 +9,7 @@
         <b-form-group label="Password" label-align="left">
           <b-input v-model='password' type="password"></b-input>
         </b-form-group>
+        <p v-if='error'> {{error.message}} </p>
         <p><nuxt-link to='/login'>Already have an account? Log In here!</nuxt-link></p>
         <b-button @click="registerUser">Sign Up</b-button>
       </b-form>
