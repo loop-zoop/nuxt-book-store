@@ -6,14 +6,18 @@
 </template>
 
 <script>
-import Books from '~/components/Books'
+import Books from "~/components/Books";
 export default {
   layout: "store",
   components: {
-      Books
+    Books
   },
-  fetch ({store, route}) {
-    store.dispatch('books/fireBooksRequest', route.params.index)
+  async fetch(context) {
+    console.log(context.route.params.index)
+    let { data } = await context.$axios.get(
+      `https://www.googleapis.com/books/v1/volumes?q=${context.route.params.index}`
+    );
+    context.store.commit("books/setBooks", data.items);
   }
 };
 </script>
