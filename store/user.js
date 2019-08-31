@@ -16,6 +16,7 @@ export const mutations = {
 export const actions = {
     signOut({commit}) {
         firebase.auth().signOut().then(function() {
+            commit('orders/cleanOrders')
             commit('signOut')
         })
     }

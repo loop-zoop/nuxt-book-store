@@ -40,12 +40,31 @@ export default {
         .signInWithEmailAndPassword(this.email, this.password)
         .then(() => {
           this.$store.commit("user/signIn", firebase.auth().currentUser);
-          this.$router.replace("/");
+        })
+        .then(() => {
+          if (this.$store.state.orders.currentOrder) {
+            this.$store.commit(
+              "orders/addBookToOrders",
+              this.$store.state.orders.currentOrder
+            );
+          }
+        })
+        .then(() => {
+          this.$router.push("/");
         })
         .catch(error => {
           this.error = error;
         });
     }
+  },
+  beforeRouteLeave(to, from, next) {
+    if (this.$store.state.orders.currentOrder) {
+      this.$store.commit(
+        "orders/removeCurrentOrder",
+        this.$store.state.orders.currentOrder
+      );
+    }
+    next();
   }
 };
 </script>

@@ -7,7 +7,7 @@
           <b-card-title class='mb-1'>{{book.volumeInfo.title}}</b-card-title>
           <b-card-text class='mb-1'>{{book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : 'unknown'}}</b-card-text>
           <b-card-text class="small text-muted mb-4">{{book.volumeInfo.publishedDate ? book.volumeInfo.publishedDate.split('-').reverse().join('.') : 'none'}}</b-card-text>
-          <b-button href="#" variant="warning">Order</b-button>
+          <b-button @click.prevent='order(index)' href="#" variant="warning">Order</b-button>
         </b-card>
       </b-col>
     </b-row>
@@ -15,12 +15,17 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   computed: {
     ...mapGetters({
       books: "books/allBooks"
+    })
+  },
+  methods: {
+    ...mapActions({
+      order: 'orders/order'
     })
   }
 };
