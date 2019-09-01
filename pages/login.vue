@@ -2,7 +2,7 @@
   <div>
     <h1 class="mb-4">Log In</h1>
     <b-row>
-      <b-form class="login-signup-form">
+      <b-form class="centered-form">
         <b-form-group label="Email" label-align="left">
           <b-input v-model="email" type="email"></b-input>
         </b-form-group>
@@ -13,7 +13,7 @@
         <p>
           <nuxt-link to="/signup">Don't have an account? Sign Up here!</nuxt-link>
         </p>
-        <b-button @click="logInUser">Log In</b-button>
+        <b-button variant='warning' @click="logInUser">Log In</b-button>
       </b-form>
     </b-row>
   </div>
@@ -23,6 +23,7 @@
 import firebase from "~/plugins/firebase";
 
 export default {
+  layout: 'centered-form',
   head: {
     title: "Log In"
   },

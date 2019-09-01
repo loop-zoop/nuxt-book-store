@@ -1,16 +1,19 @@
 <template>
   <div>
     <Books/>
+    <Alert v-show='this.$store.state.orders.showOrderAlert' />
   </div>
 </template>
 
 <script>
 import Books from "~/components/Books";
+import Alert from "~/components/Alert";
 
 export default {
   layout: "store",
   components: {
-    Books
+    Books,
+    Alert
   },
   head: {
     title: "Home"

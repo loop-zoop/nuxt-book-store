@@ -1,6 +1,9 @@
 body {
     background: #1f2b33;
     color: #fff;
+    .table {
+        color: inherit;
+    }
 }
 
 .header {
@@ -35,10 +38,15 @@ a {
     }
 }
 
-.login-signup-form {
+.centered-form {
     border: 1px solid cadetblue;
     border-radius: 0.5em;
     padding: 1em;
+    margin: 0 auto;
+}
+
+.form-button {
+    margin: 0 auto;
 }
 
 .cart {

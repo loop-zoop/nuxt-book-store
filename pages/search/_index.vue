@@ -1,6 +1,5 @@
 <template>
   <div>
-    <p>You searched for {{this.$route.params.index}}</p>
     <Books />
   </div>
 </template>
@@ -9,11 +8,20 @@
 import Books from "~/components/Books";
 export default {
   layout: "store",
+  data() {
+    return {
+      keyWord: `${this.$route.params.index}`
+    }
+  },
+  head() {
+    return {
+      title: `Search - ${this.keyWord}`
+    }
+  },
   components: {
     Books
   },
   async fetch(context) {
-    console.log(context.route.params.index)
     let { data } = await context.$axios.get(
       `https://www.googleapis.com/books/v1/volumes?q=${context.route.params.index}`
     );
