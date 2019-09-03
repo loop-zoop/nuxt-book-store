@@ -1,7 +1,9 @@
 <template>
   <div>
-    <Books/>
-    <Alert v-show='this.$store.state.orders.showOrderAlert' />
+    <Books />
+    <transition name="fade">
+      <Alert v-if="this.$store.state.orders.showOrderAlert" />
+    </transition>
   </div>
 </template>
 
@@ -18,11 +20,11 @@ export default {
   head: {
     title: "Home"
   },
-  async fetch ({ app, store }) {
+  async fetch({ app, store }) {
     let { data } = await app.$axios.get(
       "https://www.googleapis.com/books/v1/volumes?q=javascript"
     );
-    store.commit('books/setBooks', data.items);
+    store.commit("books/setBooks", data.items);
   }
 };
 </script>

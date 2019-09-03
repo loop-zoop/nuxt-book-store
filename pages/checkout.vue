@@ -41,6 +41,7 @@
 <script>
 export default {
   layout: "centered-form",
+  middleware: 'guest',
   head: {
     title: "Checkout"
   },
@@ -67,7 +68,7 @@ export default {
         const email_regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         const phone_regex = /^\+380\d{9}$/
 
-        this.form.name.value.length > 2 ? this.form.name.isValid = true : this.form.name.isValid = false
+        this.form.name.value.length >= 2 ? this.form.name.isValid = true : this.form.name.isValid = false
         email_regex.test(this.form.email.value) ? this.form.email.isValid = true : this.form.email.isValid = false
         phone_regex.test(this.form.phone.value) ? this.form.phone.isValid = true : this.form.phone.isValid = false
 

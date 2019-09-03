@@ -12,13 +12,10 @@ export default {
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ]
   },
-  route: {
-    middleware: ['loggedIn']
-  },
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: { color: '#ffc107' },
   /*
   ** Global CSS
   */

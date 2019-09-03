@@ -10,7 +10,7 @@
         <b-navbar-nav class="ml-auto">
           <b-nav-text
             class="mr-2"
-          >You added {{ orderCount }} items; total cost: {{totalOrdersPrice}}</b-nav-text>
+          >You added {{ orderCount }} items; total cost: {{totalOrdersPrice}} UAH</b-nav-text>
             <n-link to="/cart" class="cart nav-link mr-4">
               <svg
                 id="i-cart"

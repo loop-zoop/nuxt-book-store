@@ -1,63 +1,72 @@
 body {
-    background: #1f2b33;
-    color: #fff;
-    .table {
-        color: inherit;
-    }
+  background: #1f2b33;
+  color: #fff;
+  .table {
+    color: inherit;
+  }
 }
 
 .header {
-    background: #4f5b63;
-    color: #fff;
+  background: #4f5b63;
+  color: #fff;
 }
 
 .card {
-    height: 95%;
-    color: #1f2b33;
-    .card-body {
-        display: flex;
-        flex-direction: column;
-        align-items: space-around;
-        justify-content: flex-start;
-        img {
-            width: 50%;
-            align-self: center;
-        }
-        .btn {
-            margin-top: auto;
-        }
+  height: 95%;
+  color: #1f2b33;
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: space-around;
+    justify-content: flex-start;
+    img {
+      width: 50%;
+      align-self: center;
     }
+    .btn {
+      margin-top: auto;
+    }
+  }
 }
 
 a {
+  text-decoration: none;
+  color: inherit;
+  &:hover {
     text-decoration: none;
     color: inherit;
-    &:hover {
-        text-decoration: none;
-        color: inherit;
-    }
+  }
 }
 
 .centered-form {
-    border: 1px solid cadetblue;
-    border-radius: 0.5em;
-    padding: 1em;
-    margin: 0 auto;
+  border: 1px solid cadetblue;
+  border-radius: 0.5em;
+  padding: 1em;
+  margin: 0 auto;
 }
 
 .form-button {
-    margin: 0 auto;
+  margin: 0 auto;
 }
 
 .cart {
-    background: #fff;
-    border-radius: 0.2em;
-    &:hover {
-        background: rgb(224, 224, 226);
-    }
-    #i-cart {
-        display: block;
-        margin: 0 auto;
-        color: #1f2b33;
-    }
+  background: #fff;
+  border-radius: 0.2em;
+  &:hover {
+    background: rgb(224, 224, 226);
+  }
+  #i-cart {
+    display: block;
+    margin: 0 auto;
+    color: #1f2b33;
+  }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.7s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
